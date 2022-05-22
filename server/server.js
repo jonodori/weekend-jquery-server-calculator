@@ -7,7 +7,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 let calcHistory = [];
-let secondObject = {};
 
 app.get('/calc', (req,res)=> {
     res.send(calcHistory);
@@ -15,17 +14,16 @@ app.get('/calc', (req,res)=> {
 
 app.post('/calc', (req, res) => {
     console.log('we made it!')
-    
-    console.log(calculate(req.body));
-    secondObject.equation = (req.body); // added property to secondObject 
-    secondObject.result = (calculate(req.body)); // added property to secondObject 
-    console.log('secondObject:', secondObject); // test to see if the equation and result got added 
-    calcHistory.push(secondObject);  // 
-    console.log('calcHistory Array:', calcHistory); // 
-    res.send({tacos: secondObject});
+    let something = req.body;
 
+    console.log(calculate(something));
+    something.result = (calculate(something)); 
+    calcHistory.push(something);  //pushed object into calcHistory array
+    console.log('calcHistory Array:', calcHistory); // 
+    res.sendStatus(201); //shows created 
 })
 
+//changes operator string and calculates 
 function calculate(object){
 
     if (object.operator === '+'){

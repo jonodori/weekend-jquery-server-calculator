@@ -3,8 +3,9 @@ $( document ).ready ( readyNow );
 
 function readyNow(){
   $('#equal').on('click', onSubmit);
-  $('.operator').on('click', operator)
-
+  $('.operator').on('click', operator);
+  $('#clear').on('click', clear);
+  fetchResults(); // keeps this history
 }
 
 let calcObject = {}
@@ -15,6 +16,7 @@ function onSubmit(evt){
 
     calcObject.number1 = Number($('#num1').val());
     calcObject.number2 = Number($('#num2').val());
+    calcObject.result = 0;
 
     console.log(calcObject);
 
@@ -31,7 +33,7 @@ function onSubmit(evt){
     }).catch((err) => {
       console.log('ruh roh', err);
     });
-    }
+  }
     $( '#num1' ).val( '' );
     $( '#num2 ').val( '' );
 }
@@ -57,18 +59,23 @@ function fetchResults(){
 }
 
 function displayCalc(array){
+   //clears Dom so no repeats 
   $('#equation').empty(); //clears Dom so no repeats 
-  $('h2').empty(); //clears Dom so no repeats 
 
   for(let calc of array){ //looping through array to append to the dom
-    console.log(calc);
+    // console.log(calc);
+    $('h2').empty();
     $('h2').append(`${calc.result}`);
     //array.object.property in an li
     
+
     $('#equation').append(`
-    <li>${calc.equation.number1} ${calc.equation.operator} ${calc.equation.number2} = ${calc.result}</li> 
+    <li>${calc.number1} ${calc.operator} ${calc.number2} = ${calc.result}</li> 
     `);
-
-
   }
+}
+
+function clear(){
+    $( '#num1' ).val( '' );
+    $( '#num2 ').val( '' );
 }
