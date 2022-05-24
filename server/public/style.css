@@ -1,0 +1,17 @@
+body {
+    background-color: #f8f8ff;
+    color: #343a40;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 15%;
+    }
+
+h1 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #bd5d38;
+    }
+
+li {
+    color: #6c757d;
+}

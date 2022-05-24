@@ -39,6 +39,7 @@ function calculate(object){
     else if (object.operator === '/'){
         return Number(object.number1) / Number(object.number2);
     } else {console.log('no operator found!')}
+
 }
 
 
