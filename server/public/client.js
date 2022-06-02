@@ -5,6 +5,8 @@ function readyNow(){
   $('#equal').on('click', onSubmit);
   $('.operator').on('click', operator);
   $('#clear').on('click', clear);
+  $(document).on('click', '.calculator-keys', display);
+
   fetchResults(); // keeps this history
 }
 
@@ -78,4 +80,11 @@ function displayCalc(array){
 function clear(){
     $( '#num1' ).val( '' );
     $( '#num2 ').val( '' );
+}
+
+function display(){
+  let number = $(this).data('number');
+  console.log(number);
+
+  $('.calculator-keys').append(number);
 }
