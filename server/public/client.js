@@ -3,14 +3,16 @@ $( document ).ready ( readyNow );
 
 function readyNow(){
   $('#equal').on('click', onSubmit);
-  $('.operator').on('click', operator);
+  // $('.operator').on('click', operator);
   $('#clear').on('click', clear);
-  $(document).on('click', '.calculator-keys', display);
+  $(document).on('click', '.calc-button', numbers);
+  $(document).on('click', '.calc-button', operators)
+  $('.all-clear').on('click', clear);
 
   fetchResults(); // keeps this history
 }
 
-let calcObject = {}
+let calc = [];
 
 function onSubmit(evt){
 
@@ -40,13 +42,13 @@ function onSubmit(evt){
     $( '#num2 ').val( '' );
 }
 
-function operator(){
-  console.log ($(this).val());
+// function operators(){
+//   console.log ($(this).val());
   
-  // calcObject.number1 = Number($('#num1').val()); 
-  calcObject.operator = $(this).text();
-  // calcObject.number2 = Number($('#num2').val());
-}
+//   // calcObject.number1 = Number($('#num1').val()); 
+//   calcObject.operator = $(this).text();
+//   // calcObject.number2 = Number($('#num2').val());
+// }
 
 function fetchResults(){
   $.ajax({
@@ -82,9 +84,29 @@ function clear(){
     $( '#num2 ').val( '' );
 }
 
-function display(){
-  let number = $(this).data('number');
-  console.log(number);
+function numbers(){
+  let number = $(this).data('number-id');
+  $('#calculator-screen').append(number);
+  calc.push(number);
+  
+  
 
-  $('.calculator-keys').append(number);
 }
+
+function operators(){
+  let operator = $(this).data('operator-id');
+  $('#calculator-screen').append(operator);
+
+  calc.push(operator);
+}
+
+
+
+function clear(){
+  let calc = [];
+
+  $('#calculator-screen').empty();
+  
+
+}
+
